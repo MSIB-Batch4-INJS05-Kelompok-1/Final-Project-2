@@ -1,0 +1,28 @@
+{
+  "name": "final-project-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MSIB-Batch4-INJS05-Kelompok-1/Final-Project-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MSIB-Batch4-INJS05-Kelompok-1/Final-Project-2/issues"
+  },
+  "homepage": "https://github.com/MSIB-Batch4-INJS05-Kelompok-1/Final-Project-2#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "sequelize": "^6.31.1",
+    "sequelize-cli": "^6.6.0"
+  }
+}
