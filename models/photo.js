@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Photo extends Model {
     /**
@@ -11,44 +9,44 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.user);
+      this.belongsTo(models.User);
     }
   }
-  Photo.init({
-    title: { 
-      type: DataTypes.STRING, 
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: "Title cannot be empty"
-        }
-
-      }
+  Photo.init(
+    {
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Title cannot be empty",
+          },
+        },
+      },
+      caption: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Caption cannot be empty",
+          },
+        },
+      },
+      poster_image_url: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          isUrl: true,
+          notEmpty: {
+            msg: "Title cannot be empty",
+          },
+        },
+      },
     },
-    caption:{ 
-      type: DataTypes.TEXT, 
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: "Caption cannot be empty"
-        }
-
-      }
-    },
-    poster_image_url: { 
-      type: DataTypes.TEXT, 
-      allowNull: false,
-      validate: {
-        isUrl: true,
-        notEmpty: {
-          msg: "Title cannot be empty"
-        }
-
-      }
+    {
+      sequelize,
+      modelName: "Photo",
     }
-  }, {
-    sequelize,
-    modelName: 'Photo',
-  });
+  );
   return Photo;
 };
