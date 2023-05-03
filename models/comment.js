@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
     /**
@@ -11,23 +9,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.user);
+      this.belongsTo(models.User);
+      this.belongsTo(models.Photo);
     }
   }
-  Comment.init({
-    comment: { 
-      type: DataTypes.TEXT, 
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: "Comment cannot be empty"
-        }
-
-      }
+  Comment.init(
+    {
+      comment: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Comment cannot be empty",
+          },
+        },
+      },
     },
-  }, {
-    sequelize,
-    modelName: 'Comment',
-  });
+    {
+      sequelize,
+      modelName: "Comment",
+    }
+  );
   return Comment;
 };
