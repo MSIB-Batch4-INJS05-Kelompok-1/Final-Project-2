@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.Photo);
       this.hasMany(models.Comment);
+      this.hasMany(models.SocialMedia);
     }
   }
   User.init(
@@ -74,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       phone_number: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           isInt: true,
