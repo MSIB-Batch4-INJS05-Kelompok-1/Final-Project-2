@@ -7,6 +7,12 @@ class CommentController {
       const userId = req.userData.id;
       const photoId = req.body.PhotoId;
 
+      const photoData = await Photo.findOne({ where: { id: photoId } });
+
+      if (!photoData) {
+        return res.status(404).json({ message: "Photo not found" });
+      }
+
       const Comments = await Comment.create({
         comment,
         PhotoId: photoId,
