@@ -1,6 +1,11 @@
 const router = require("express").Router();
-const { authMiddleware, authorizeUserMiddleware, } = require("../middlewares/auth");
-const { createSocialMedia, getSocialMedia, editSocialMedia, deleteSocialMedia, } = require("../controllers/SocialMediaController");
+const { authMiddleware } = require("../middlewares/auth");
+const {
+  createSocialMedia,
+  getSocialMedia,
+  editSocialMedia,
+  deleteSocialMedia,
+} = require("../controllers/SocialMediaController");
 
 // Social Media Routes
 router.post("/", authMiddleware, createSocialMedia);

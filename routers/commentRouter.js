@@ -1,6 +1,11 @@
 const router = require("express").Router();
-const { authMiddleware, authorizeUserMiddleware, } = require("../middlewares/auth");
-const { createComment, getComment, editComment, deleteComment, } = require("../controllers/CommentController");
+const { authMiddleware } = require("../middlewares/auth");
+const {
+  createComment,
+  getComment,
+  editComment,
+  deleteComment,
+} = require("../controllers/CommentController");
 
 // Photo Comment
 router.get("/", authMiddleware, getComment);

@@ -1,6 +1,11 @@
 const router = require("express").Router();
-const { authMiddleware, authorizeUserMiddleware, } = require("../middlewares/auth");
-const { postPhoto, getPhotos, editPhoto, deletePhoto, } = require("../controllers/PhotoController");
+const { authMiddleware } = require("../middlewares/auth");
+const {
+  postPhoto,
+  getPhotos,
+  editPhoto,
+  deletePhoto,
+} = require("../controllers/PhotoController");
 
 // Photo Routes
 router.get("/", authMiddleware, getPhotos);
