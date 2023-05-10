@@ -53,8 +53,9 @@ class PhotosController {
           message: "Photos not found",
         });
       }
-
-      res.status(200).json(photos);
+      res.status(200).json({
+        photos: photos,
+      });
     } catch (err) {
       console.error(err);
       res.status(500).json(err);

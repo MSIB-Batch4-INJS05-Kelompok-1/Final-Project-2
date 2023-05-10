@@ -131,7 +131,7 @@ class UserController {
       });
     } catch (err) {
       next(err);
-    }
+    } 
   }
 
   static async remove(req, res, next) {

@@ -1,8 +1,8 @@
 {
   "development": {
-    "port" : "6969",
+    "port" : "5432",
     "username": "postgres",
-    "password": "your_password",
+    "password": "postgres",
     "database": "MyGram_db",
     "host": "127.0.0.1",
     "dialect": "postgres"
