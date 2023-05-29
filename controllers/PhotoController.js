@@ -21,7 +21,6 @@ class PhotosController {
         UserId: photo.UserId,
       });
     } catch (err) {
-      console.error(err);
       res.status(500).json(err);
     }
   }
@@ -57,7 +56,6 @@ class PhotosController {
         photos: photos,
       });
     } catch (err) {
-      console.error(err);
       res.status(500).json(err);
     }
   }
@@ -94,7 +92,6 @@ class PhotosController {
         },
       });
     } catch (err) {
-      console.error(err);
       res.status(500).json(err);
     }
   }
@@ -118,7 +115,6 @@ class PhotosController {
         .status(200)
         .json({ message: "Your photo has been successfully deleted" });
     } catch (err) {
-      console.error(err);
       res.status(500).json(err);
     }
   }

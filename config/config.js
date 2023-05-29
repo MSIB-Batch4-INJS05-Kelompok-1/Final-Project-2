@@ -15,6 +15,7 @@ const config = {
     database: process.env.DB_NAME_TEST,
     host: process.env.DB_HOST,
     dialect: "postgres",
+    logging: false,
     port: process.env.DB_PORT,
   },
   production: {

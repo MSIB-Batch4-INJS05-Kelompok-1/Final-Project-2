@@ -30,7 +30,6 @@ class CommentController {
         },
       });
     } catch (error) {
-      console.error(error);
       res.status(500).json(error);
     }
   }

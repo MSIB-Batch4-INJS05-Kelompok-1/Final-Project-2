@@ -16,7 +16,6 @@ class SocialMediaController {
         social_media: socialMedia,
       });
     } catch (error) {
-      console.error(error);
       res.status(500).json(error);
     }
   }
@@ -34,7 +33,6 @@ class SocialMediaController {
         social_media: socialMedia,
       });
     } catch (error) {
-      console.error(error);
       res.status(500).json(error);
     }
   }
@@ -71,7 +69,6 @@ class SocialMediaController {
         social_media: socialMedia,
       });
     } catch (error) {
-      console.error(error);
       res.status(500).json(error);
     }
   }
@@ -104,7 +101,6 @@ class SocialMediaController {
         message: "Your social media has been successfully deleted",
       });
     } catch (error) {
-      console.error(error);
       res.status(500).json(error);
     }
   }
