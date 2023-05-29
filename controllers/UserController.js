@@ -74,7 +74,6 @@ class UserController {
         token: access_token,
       });
     } catch (err) {
-      console.error(err);
       res.status(500).json(err);
     }
   }
@@ -131,7 +130,7 @@ class UserController {
       });
     } catch (err) {
       next(err);
-    } 
+    }
   }
 
   static async remove(req, res, next) {

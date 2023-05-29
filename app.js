@@ -16,8 +16,10 @@ app.use("/photos", photoRouter);
 app.use("/comments", commentRouter);
 app.use("/socialmedias", socialMediaRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT} in ${env} mode`);
-});
+if (env !== "test") {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT} in ${env} mode`);
+  });
+}
 
 module.exports = app;
