@@ -241,7 +241,29 @@ describe("Photo routes", () => {
         .delete(`/photos/${photoId}`);
 
       expect(res.statusCode).toBe(401);
-      expect(res.body).toHaveProperty("message", "No token provided");
+      expect(res.body).toHaveProperty("message");
+      expect(typeof res.body.message).toEqual("string");
+      expect(res.body.message).toEqual("No token provided");
+    });
+
+    it("should return 401 status code if the photo is not owned by the user", async () => {
+      const res = await request(app)
+        .delete(`/photos/${anotherPhotoId}`)
+        .set("token", token);
+      expect(res.statusCode).toEqual(401);
+      expect(typeof res.body).toEqual("object");
+      expect(res.body).toHaveProperty("message");
+      expect(typeof res.body.message).toEqual("string");
+      expect(res.body.message).toEqual("Unauthorized");
+    });
+
+    it("should return 404 status code if the photo is not found", async () => {
+      const res = await request(app).delete(`/photos/0`).set("token", token);
+      expect(res.statusCode).toEqual(404);
+      expect(typeof res.body).toEqual("object");
+      expect(res.body).toHaveProperty("message");
+      expect(typeof res.body.message).toEqual("string");
+      expect(res.body.message).toEqual("Photo not found");
     });
   });
 
