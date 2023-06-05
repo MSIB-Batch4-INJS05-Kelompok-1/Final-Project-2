@@ -40,6 +40,33 @@ describe("Photo routes", () => {
       .send(photoDetails)
       .set("token", token);
     photoId = response.body.id;
+
+    const anotherUser = {
+      email: "another@mail.com",
+      full_name: "another",
+      username: "another",
+      password: "another",
+      profile_image_url: "another.com",
+      age: 20,
+      phone_number: "081234567890",
+    };
+    const anotherUserResponse = await request(app)
+      .post("/users/register")
+      .send(anotherUser);
+    const anotherUserLoginResponse = await request(app)
+      .post("/users/login")
+      .send({ email: anotherUser.email, password: anotherUser.password });
+    const anotherUserToken = anotherUserLoginResponse.body.token;
+    const anotherPhotoDetails = {
+      poster_image_url: "another.com",
+      title: "another",
+      caption: "another",
+    };
+    const anotherPhotoResponse = await request(app)
+      .post("/photos")
+      .send(anotherPhotoDetails)
+      .set("token", anotherUserToken);
+    anotherPhotoId = anotherPhotoResponse.body.id;
   });
 
   describe("POST /photos", () => {
@@ -172,7 +199,7 @@ describe("Photo routes", () => {
         };
     
         const res = await request(app)
-            .put("/photos/999999")
+            .put(`/photos/0`)
             .send(updatedPhotoDetails)
             .set("token", token);
     
@@ -183,22 +210,16 @@ describe("Photo routes", () => {
         expect(res.body.message).toEqual("Photo not found");
         });
     
-        it("should return status 400 if title is empty", async () => {
-          const updatedPhotoDetails = {
-            title: "", // Empty title
-            caption: "This photo has been updated",
-            poster_image_url: "https://example.com/updatedphoto.jpg",
-          };
-        
+        it("should return 401 status code if the photo is not owned by the user", async () => {
           const res = await request(app)
-            .put(`/photos/${photoId}`)
-            .send(updatedPhotoDetails)
+            .put(`/photos/${anotherPhotoId}`)
+            .send({ title: "testing" })
             .set("token", token);
-        
-          expect(res.statusCode).toBe(400);
-          expect(res.body).toHaveProperty("message", "Validation error");
-          expect(Array.isArray(res.body.errors)).toBe(true);
-          expect(res.body.errors.length).toBeGreaterThan(0);
+          expect(res.statusCode).toEqual(401);
+          expect(typeof res.body).toEqual("object");
+          expect(res.body).toHaveProperty("message");
+          expect(typeof res.body.message).toEqual("string");
+          expect(res.body.message).toEqual("Unauthorized");
         });
 
   describe("DELETE /photos/:photoId", () => {
