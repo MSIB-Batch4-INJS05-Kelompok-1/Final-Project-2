@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isUrl: true,
           notEmpty: {
-            msg: "Title cannot be empty",
+            msg: "Photo Url cannot be empty",
           },
         },
       },
