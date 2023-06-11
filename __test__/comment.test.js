@@ -228,6 +228,7 @@ describe("Comment routes", () => {
         .delete(`/comments/${commentId}`);
 
       expect(res.statusCode).toBe(401);
+      expect(typeof res.body).toEqual("object");
       expect(res.body).toHaveProperty("message");
       expect(typeof res.body.message).toEqual("string");
       expect(res.body.message).toEqual("No token provided");
